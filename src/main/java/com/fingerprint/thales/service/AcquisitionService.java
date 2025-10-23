@@ -17,6 +17,7 @@ import com.fingerprint.thales.enums.AcquisitionStatesEnum;
 import com.fingerprint.thales.exception.AcquisitionException;
 import com.fingerprint.thales.jna.FixedDeviceInfoStruct;
 import com.fingerprint.thales.model.ResponseOk;
+import com.fingerprint.thales.utils.BiometricAdapter;
 import com.fingerprint.thales.utils.GbmsApiDeviceUtil;
 import com.sun.jna.Memory;
 import com.sun.jna.Pointer;
@@ -260,26 +261,28 @@ public class AcquisitionService implements GBMSAPI_JAVA_AcquisitionEventsManager
     startResultPolling();
 
     lastActivityTime = System.currentTimeMillis();
-    while (!acqEnded) {
-      long sinceLastActivity = System.currentTimeMillis() - lastActivityTime;
+    synchronized (this) {
+      while (!acqEnded) {
+        long sinceLastActivity = System.currentTimeMillis() - lastActivityTime;
 
-      if (sinceLastActivity >= timeout) {
-        stopAcquisition();
-        resetAcquisitionState();
-        throw new AcquisitionException(AcquisitionException.ErrorCode.ACQUISITION_TIMEOUT);
-      }
-
-      try {
-        Thread.sleep(Constants.POLLING_INTERVAL_MS);
-      } catch (InterruptedException e) {
-        Thread.currentThread().interrupt();
-        log.error("La adquisición fue interrumpida: {}", e.getMessage());
-        break;
+        if (sinceLastActivity >= timeout) {
+          stopAcquisition();
+          resetAcquisitionState();
+          throw new AcquisitionException(AcquisitionException.ErrorCode.ACQUISITION_TIMEOUT);
+        }
+        try {
+          this.wait(Constants.POLLING_INTERVAL_MS);
+        } catch (InterruptedException e) {
+          Thread.currentThread().interrupt();
+          log.error("La adquisición fue interrumpida: {}", e.getMessage());
+          break;
+        }
       }
     }
 
     log.info("Adquisición finalizada correctamente.");
-    return lastResponse != null ? lastResponse : ResponseOk.builder().fingerprint(null).build();
+    return getLastResponse() != null ? getLastResponse() :
+            ResponseOk.builder().fingerprint(null).build();
   }
 
   private void startResultPolling() {
@@ -450,7 +453,8 @@ public class AcquisitionService implements GBMSAPI_JAVA_AcquisitionEventsManager
 
     if (res == GBMSAPI_JAVA_ErrorCodes.GBMSAPI_JAVA_ERROR_CODE_NO_ERROR) {
       byte[] template = buffer.getByteArray(Constants.ZERO, sizeRef.getValue());
-      String base64 = Base64.getEncoder().encodeToString(template);
+      byte[] newFileBytes = BiometricAdapter.adapterINE(template);
+      String base64 = Base64.getEncoder().encodeToString(newFileBytes);
       log.info("ISO Template generado correctamente ({} bytes)", outSize.getValue());
       return base64;
     } else {

@@ -151,7 +151,7 @@ La siguiente tabla muestra cómo se mapean los errores del SDK Thales a un códi
 descripción de IDEMIA.
 
 <details>
-  <summary>Ver tabla completa de mapeo (Watson → IDEMIA)</summary>
+  <summary>Ver tabla completa de mapeo (Thales → IDEMIA)</summary>
 
 </details>
 
