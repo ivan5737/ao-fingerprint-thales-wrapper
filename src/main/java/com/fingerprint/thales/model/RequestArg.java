@@ -20,9 +20,9 @@ public record RequestArg(
    * - args[0]: timeout en segundos (int, por defecto 30)
    * - args[1]: isMock (boolean, por defecto false)
    * - args[2]: logsEnabled (boolean, por defecto false)
-   * Si algún valor no es válido o no está presente, se usa el valor por defecto.
+   * Si algun valor no es valido o no esta presente, se usa el valor por defecto.
    *
-   * @param args Array de Strings con los parámetros.
+   * @param args Array de Strings con los parametros.
    * @return Instancia de RequestArg con los valores parseados o por defecto.
    */
   public static RequestArg from(String[] args) {

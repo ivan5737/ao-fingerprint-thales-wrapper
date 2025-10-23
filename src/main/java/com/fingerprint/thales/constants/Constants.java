@@ -5,7 +5,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 /**
- * Constantes usadas en la aplicación.
+ * Constantes usadas en la aplicacion.
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Constants {
@@ -113,23 +113,23 @@ public class Constants {
   public static final String DEVICE_NOT_INITIALIZED_MSG = "Dispositivo IB no inicializado. Llama " +
           "initSdkAndOpenLastDevice().";
 
-  public static final String NO_DEVICE_MSG = "El dispositivo USB no está conectado,";
+  public static final String NO_DEVICE_MSG = "El dispositivo USB no esta conectado,";
 
   public static final String CAPTURE_NOT_AVAILABLE_MSG = "Funcionalidad no disponible en el " +
           "dispositivo %s,";
 
-  public static final String RESULT_IMAGE_EXT_UNEXPECTED_MSG = "getResultImageExt devolvió " +
+  public static final String RESULT_IMAGE_EXT_UNEXPECTED_MSG = "getResultImageExt devolvio " +
           "estructura inesperada.";
 
   public static final String NO_TEMPLATE_SEGMENTS_MSG = "No hay segmentos disponibles para " +
           "convertir a ANSI/ISO.";
 
-  public static final String TEMPLATE_CONVERSION_EMPTY_MSG = "ConvertImageToISOANSI devolvió " +
-          "vacío.";
+  public static final String TEMPLATE_CONVERSION_EMPTY_MSG = "ConvertImageToISOANSI devolvio " +
+          "vacio.";
 
   public static final String PNG_ENCODING_FAILED_MSG = "Calidad de huella insuficiente,";
 
-  public static final String COMMUNICATION_BROKEN_MSG = "Error de protocolo de comunicación,";
+  public static final String COMMUNICATION_BROKEN_MSG = "Error de protocolo de comunicacion,";
 
   public static final String INTERRUPTED_MSG = "El comando ha sido abortado,";
 
@@ -146,7 +146,7 @@ public class Constants {
   public static final String ERROR_MAPPER = "{\"error\":\"JsonSerializationError\"}";
 
   // Otras constantes.
-  public static final String MSG_TEMPLATE_ES = "%s (%s), código de error: %d";
+  public static final String MSG_TEMPLATE_ES = "%s (%s), codigo de error: %d";
 
   public static final String UNKNOWN = "UNKNOWN";
 

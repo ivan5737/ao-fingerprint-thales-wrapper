@@ -181,7 +181,7 @@ public class AcquisitionService implements GBMSAPI_JAVA_AcquisitionEventsManager
 
     var ref = new IntByReference();
 
-    // Obtener características y opciones
+    // Obtener caracteristicas y opciones
     GbmsApiDeviceUtil.throwIfError(
             GBMSAPI_JAVA_DLL_WRAPPER.GBMSAPI_Library.INSTANCE.GBMSAPI_GetDeviceFeatures(ref));
     GbmsApiDeviceUtil.throwIfError(
@@ -226,14 +226,14 @@ public class AcquisitionService implements GBMSAPI_JAVA_AcquisitionEventsManager
 
 
   /**
-   * Inicia el proceso de adquisición de huella.
+   * Inicia el proceso de adquisicion de huella.
    */
   public ResponseOk startAcquisition(Long timeout) {
     int acqOptions;
-    log.info("Iniciando adquisición con timeout de {} milisegundos", timeout);
+    log.info("Iniciando adquisicion con timeout de {} milisegundos", timeout);
 
     if (acqState != AcquisitionStatesEnum.IDLE.getCode()) {
-      log.warn("No se puede iniciar adquisición — estado actual: {}",
+      log.warn("No se puede iniciar adquisicion — estado actual: {}",
               AcquisitionStatesEnum.getAcquisitionStateString(acqState));
     }
 
@@ -242,7 +242,7 @@ public class AcquisitionService implements GBMSAPI_JAVA_AcquisitionEventsManager
 
     if (objToScan == GBMSAPI_JAVA_ScannableObjects.GBMSAPI_JAVA_SBT_NO_OBJECT) {
       throw new AcquisitionException(AcquisitionException.ErrorCode.INTERNAL_ERROR,
-              new RuntimeException("Objeto a escanear no válido"));
+              new RuntimeException("Objeto a escanear no valido"));
     }
 
     resetAcquisitionState();
@@ -274,13 +274,13 @@ public class AcquisitionService implements GBMSAPI_JAVA_AcquisitionEventsManager
           this.wait(Constants.POLLING_INTERVAL_MS);
         } catch (InterruptedException e) {
           Thread.currentThread().interrupt();
-          log.error("La adquisición fue interrumpida: {}", e.getMessage());
+          log.error("La adquisicion fue interrumpida: {}", e.getMessage());
           break;
         }
       }
     }
 
-    log.info("Adquisición finalizada correctamente.");
+    log.info("Adquisicion finalizada correctamente.");
     return getLastResponse() != null ? getLastResponse() :
             ResponseOk.builder().fingerprint(null).build();
   }
@@ -296,7 +296,7 @@ public class AcquisitionService implements GBMSAPI_JAVA_AcquisitionEventsManager
         }
       }
     }, 100, 100);
-    log.info("Polling de adquisición iniciado.");
+    log.info("Polling de adquisicion iniciado.");
   }
 
   private int prepareAcquisitionOptions(int objToScan) {
@@ -324,7 +324,7 @@ public class AcquisitionService implements GBMSAPI_JAVA_AcquisitionEventsManager
     setAcqFrame(null);
     acqState = AcquisitionStatesEnum.IDLE.getCode();
     acqTimer = null;
-    log.info("Estado de adquisición reiniciado.");
+    log.info("Estado de adquisicion reiniciado.");
   }
 
   private void handleAcquisitionResults() {
@@ -345,7 +345,7 @@ public class AcquisitionService implements GBMSAPI_JAVA_AcquisitionEventsManager
         acqState = AcquisitionStatesEnum.IDLE.getCode();
       }
     } catch (Exception ex) {
-      log.error("Error procesando resultados de adquisición: {}", ex.getMessage(), ex);
+      log.error("Error procesando resultados de adquisicion: {}", ex.getMessage(), ex);
       stopAcquisition();
     } finally {
       acqBusy = false;
@@ -380,7 +380,7 @@ public class AcquisitionService implements GBMSAPI_JAVA_AcquisitionEventsManager
       }
       return Constants.ONE;
     } catch (Exception ex) {
-      log.error("Excepción en invoke(): {}", ex.getMessage(), ex);
+      log.error("Excepcion en invoke(): {}", ex.getMessage(), ex);
       return Constants.ZERO;
     } finally {
       acqBusy = false;
@@ -469,7 +469,7 @@ public class AcquisitionService implements GBMSAPI_JAVA_AcquisitionEventsManager
     try {
       GbmsApiDeviceUtil.throwIfError(errorCode);
     } catch (AcquisitionException ex) {
-      log.error("Error en adquisición: {}", ex.getMessage());
+      log.error("Error en adquisicion: {}", ex.getMessage());
     }
   }
 
@@ -478,7 +478,7 @@ public class AcquisitionService implements GBMSAPI_JAVA_AcquisitionEventsManager
     for (var newDiag : newDiags) {
       if (!diagnosticsList.contains(newDiag)) {
         diagnosticsList.add(newDiag);
-        log.warn("Nuevo diagnóstico: {}", newDiag);
+        log.warn("Nuevo diagnostico: {}", newDiag);
       }
     }
 
@@ -487,7 +487,7 @@ public class AcquisitionService implements GBMSAPI_JAVA_AcquisitionEventsManager
             | GBMSAPI_JAVA_DiagnosticMessages.GBMSAPI_JAVA_DM_VSROLL_ROLL_DIRECTION_RIGHT
             | GBMSAPI_JAVA_DiagnosticMessages.GBMSAPI_JAVA_DM_VSROLL_ROLL_DIRECTION_UP);
 
-    log.info("Configurando LED blink para diagnósticos (diag={})", diag);
+    log.info("Configurando LED blink para diagnosticos (diag={})", diag);
     if (diag != Constants.ZERO) {
       GBMSAPI_JAVA_DLL_WRAPPER.GBMSAPI_Library.INSTANCE.GBMSAPI_VUI_LED_BlinkDuringAcquisition(Constants.ONE);
     } else {

@@ -16,18 +16,18 @@ import org.slf4j.LoggerFactory;
 import static com.fingerprint.thales.utils.Jsons.toPrettyJson;
 
 /**
- * Clase principal de la consola de adquisición Thales.
+ * Clase principal de la consola de adquisicion Thales.
  */
 @Slf4j
 public class ApplicationThales {
 
   /**
-   * Logger específico para registrar el resultado en JSON.
+   * Logger especifico para registrar el resultado en JSON.
    */
   private static final Logger RESULT_LOG = LoggerFactory.getLogger(Constants.RESULT_LOGGER);
 
   /**
-   * Indica si la operación fue exitosa.
+   * Indica si la operacion fue exitosa.
    */
   private static boolean success = false;
 
@@ -67,7 +67,7 @@ public class ApplicationThales {
   }
 
   /**
-   * Procesa el resultado final, registra los logs y termina la aplicación.
+   * Procesa el resultado final, registra los logs y termina la aplicacion.
    *
    * @param resultJson Resultado en formato JSON.
    * @param endLog     Mensaje de log final.
