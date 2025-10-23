@@ -1,0 +1,40 @@
+<configuration>
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
+    <!-- Archivo de log principal -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logs/Thales-fingerprint.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Salida estándar (consola) [INFO, DEBUG, etc.]-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n</pattern>
+            <immediateFlush>true</immediateFlush>
+        </encoder>
+    </appender>
+
+    <!-- Salida “resultado” (solo el JSON) [System.out.println] -->
+    <appender name="RESULT" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <encoder>
+            <pattern>%msg%n</pattern>
+            <immediateFlush>true</immediateFlush>
+        </encoder>
+    </appender>
+
+    <!-- Logger (RESULT json final en consola y FILE en archivo) -->
+    <logger name="result" level="INFO" additivity="false">
+        <appender-ref ref="RESULT"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+
+    <!-- Logger raíz (STDOUT en consola y FILE en archivo)-->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>
