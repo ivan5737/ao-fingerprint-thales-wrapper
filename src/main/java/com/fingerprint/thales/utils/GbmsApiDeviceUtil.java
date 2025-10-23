@@ -21,15 +21,15 @@ public class GbmsApiDeviceUtil {
 
   private static final Map<Integer, String> DIAGNOSTIC_MESSAGES = Map.ofEntries(
           Map.entry(GBMSAPI_JAVA_DiagnosticMessages.GBMSAPI_JAVA_DM_SCANNER_SURFACE_NOT_NORMA,
-                  "SURFACE DIRTY"),
+                  "SUPERFICIE DEL ESCANER SUCIA"),
           Map.entry(GBMSAPI_JAVA_DiagnosticMessages.GBMSAPI_JAVA_DM_SCANNER_FAILURE,
-                  "ILLUMINATOR BROKEN"),
+                  "FALLA EN EL ILUMINADOR"),
           Map.entry(GBMSAPI_JAVA_DiagnosticMessages.GBMSAPI_JAVA_DM_DRY_FINGER,
-                  "DRY FINGER"),
+                  "DEDO SECO"),
           Map.entry(GBMSAPI_JAVA_DiagnosticMessages.GBMSAPI_JAVA_DM_WET_FINGER,
-                  "WET FINGER"),
+                  "DEDO HUMEDO"),
           Map.entry(GBMSAPI_JAVA_DiagnosticMessages.GBMSAPI_JAVA_DM_EXT_LIGHT_TOO_STRONG,
-                  "EXTERNAL LIGHT TOO STRONG"));
+                  "LUZ EXTERNA DEMASIADO INTENSA"));
 
   public static List<String> getDiagsToDisplay(int diagnostic) {
     return DIAGNOSTIC_MESSAGES.entrySet().stream()

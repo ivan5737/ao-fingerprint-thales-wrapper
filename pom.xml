@@ -7,7 +7,7 @@
     <artifactId>ao-fingerprint-thales-wrapper</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>ao-fingerprint-thales-wrapper</name>
+    <name>ao-thales-fingerprint</name>
     <description>AO fingerprint Thales wrapper</description>
 
     <properties>
@@ -70,6 +70,7 @@
     </dependencies>
 
     <build>
+        <finalName>${name}-${version}</finalName>
         <plugins>
             <!-- Compilador -->
             <plugin>

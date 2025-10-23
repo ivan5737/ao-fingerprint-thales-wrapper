@@ -61,7 +61,7 @@ Compila y ejecuta desde línea de comandos:
   ```bash
     mvn clean package
     
-    java -jar target/ao-fingerprint-thales-wrapper-1.0.0 30 30 false true
+    java -jar target/ao-thales-fingerprint-1.0.0.jar 30 30 false true
   ```
 
 ### Parámetros

@@ -233,7 +233,7 @@ public class AcquisitionService implements GBMSAPI_JAVA_AcquisitionEventsManager
     log.info("Iniciando adquisicion con timeout de {} milisegundos", timeout);
 
     if (acqState != AcquisitionStatesEnum.IDLE.getCode()) {
-      log.warn("No se puede iniciar adquisicion — estado actual: {}",
+      log.warn("No se puede iniciar adquisicion estado actual: {}",
               AcquisitionStatesEnum.getAcquisitionStateString(acqState));
     }
 
