@@ -68,6 +68,7 @@ public class Constants {
   public static final String FINGERPRINT_B64_LOG = "FingerprintB64 (Base64 length={})";
 
   // Constantes GbmsApiDeviceUtil class
+
   public static final String FLAG_ACQUISITION_PHASE = "ACQUISITION_PHASE";
 
   public static final String FLAG_STOP_TYPE = "STOP_TYPE";
@@ -146,6 +147,7 @@ public class Constants {
   public static final String ERROR_MAPPER = "{\"error\":\"JsonSerializationError\"}";
 
   // Otras constantes.
+
   public static final String MSG_TEMPLATE_ES = "%s (%s), codigo de error: %d";
 
   public static final String UNKNOWN = "UNKNOWN";
@@ -181,6 +183,7 @@ public class Constants {
   public static final int POLLING_INTERVAL_MS = 200;
 
   // AcquisitionStatesEnum descriptions.
+
   public static final String DESC_IDLE = "IDLE";
 
   public static final String DESC_PREVIEW = "PREVIEW";
@@ -190,5 +193,11 @@ public class Constants {
   public static final String DESC_SCANNER_START = "SCANNER START";
 
   public static final String DESC_ACQUISITION_END = "ACQUISITION END";
+
+  // AcquisitionHandler class
+
+  public static final String FLAT_RIGHT_INDEX = "FLAT_RIGHT_INDEX";
+
+  public static final String FLAT_LEFT_INDEX = "FLAT_LEFT_INDEX";
 
 }

@@ -9,6 +9,7 @@ import com.fingerprint.thales.service.AcquisitionService;
 import com.fingerprint.thales.utils.ExceptionMapper;
 import com.fingerprint.thales.utils.LogLevels;
 import com.fingerprint.thales.utils.ResourceReader;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,6 +45,7 @@ public class ApplicationThales {
       resultJson = toPrettyJson(ResponseOk.builder()
               .fingerprint(mockFingerprint)
               .build());
+      success = true;
       finallyProcess(resultJson, Constants.END_LOG_MOCK);
       return;
     }
@@ -53,8 +55,9 @@ public class ApplicationThales {
       AcquisitionService service = new AcquisitionService();
       ResponseOk result = service.startAcquisition(requestArg.timeout());
 
-      if (result.fingerprint() == null || result.fingerprint().isBlank())
-        throw new AcquisitionException(AcquisitionException.ErrorCode.INTERNAL_ERROR);
+      Optional.ofNullable(result.fingerprint())
+              .filter(fp -> !fp.isBlank())
+              .orElseThrow(() -> new AcquisitionException(AcquisitionException.ErrorCode.INTERNAL_ERROR));
 
       resultJson = toPrettyJson(result);
       success = true;
@@ -73,7 +76,7 @@ public class ApplicationThales {
    * @param endLog     Mensaje de log final.
    */
   private static void finallyProcess(String resultJson, String endLog) {
-    log.info(endLog);
+    RESULT_LOG.info(endLog);
     RESULT_LOG.info(Constants.ARG, resultJson);
     System.exit(success ? Constants.ZERO : Constants.ONE);
   }

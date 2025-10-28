@@ -11,9 +11,11 @@
     <description>AO fingerprint Thales wrapper</description>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.plugin>3.11.0</maven.compiler.plugin>
+        <maven.shade.plugin>3.5.1</maven.shade.plugin>
         <lombok.version>1.18.32</lombok.version>
         <slf4j.version>2.0.13</slf4j.version>
         <logback.version>1.5.19</logback.version>
@@ -76,16 +78,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>${maven.compiler.plugin}</version>
                 <configuration>
-                    <release>17</release>
+                    <release>${maven.compiler.source}</release>
                 </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>${maven.shade.plugin}</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
