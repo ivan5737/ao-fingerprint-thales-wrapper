@@ -40,33 +40,6 @@ public class Constants {
 
   public static final String NOT_AVAILABLE = "NOT AVAILABLE";
 
-  public static final String DETECTED_DEVICE = "Dispositivos IB detectados: {}";
-
-  public static final String OPENED_DEVICE = "Dispositivo IB abierto: {}";
-
-  public static final String STARTED_CAPTURE = "Iniciando captura: type={}, res={}, opts=0x{}";
-
-  public static final String PREPARE_CAPTURE_FIRST = "Debes llamar prepareCaptureSync() primero";
-
-  public static final String CLOSING_DEVICE = "Cerrando dispositivo...";
-
-  public static final String ERROR_CLOSING_DEVICE = "Error al cerrar dispositivo: {}";
-
-  public static final String RESULT_IMAGE_EXTENDED_AVAILABLE = "CB: " +
-          "RESULT_IMAGE_EXTENDED_AVAILABLE | err? {} | type={}";
-
-  public static final String DEVICE_ACQUISITION_BEGUN = "CB: DEVICE_ACQUISITION_BEGUN | type={}";
-
-  public static final String DEVICE_ACQUISITION_COMPLETED = "CB: DEVICE_ACQUISITION_COMPLETED | " +
-          "type={}";
-
-  public static final String DEVICE_WARNING_RECEIVED = "CB: DEVICE_WARNING_RECEIVED | type={} " +
-          "msg={}";
-
-  public static final String DEVICE_COMMUNICATION_BROKEN = "CB: DEVICE_COMMUNICATION_BROKEN";
-
-  public static final String FINGERPRINT_B64_LOG = "FingerprintB64 (Base64 length={})";
-
   // Constantes GbmsApiDeviceUtil class
 
   public static final String FLAG_ACQUISITION_PHASE = "ACQUISITION_PHASE";
@@ -109,36 +82,7 @@ public class Constants {
 
   public static final String EXCEPTION = "Exception";
 
-  public static final String TIMEOUT_MSG = "No hay respuesta tras el tiempo definido,";
-
-  public static final String DEVICE_NOT_INITIALIZED_MSG = "Dispositivo IB no inicializado. Llama " +
-          "initSdkAndOpenLastDevice().";
-
-  public static final String NO_DEVICE_MSG = "El dispositivo USB no esta conectado,";
-
-  public static final String CAPTURE_NOT_AVAILABLE_MSG = "Funcionalidad no disponible en el " +
-          "dispositivo %s,";
-
-  public static final String RESULT_IMAGE_EXT_UNEXPECTED_MSG = "getResultImageExt devolvio " +
-          "estructura inesperada.";
-
-  public static final String NO_TEMPLATE_SEGMENTS_MSG = "No hay segmentos disponibles para " +
-          "convertir a ANSI/ISO.";
-
-  public static final String TEMPLATE_CONVERSION_EMPTY_MSG = "ConvertImageToISOANSI devolvio " +
-          "vacio.";
-
-  public static final String PNG_ENCODING_FAILED_MSG = "Calidad de huella insuficiente,";
-
-  public static final String COMMUNICATION_BROKEN_MSG = "Error de protocolo de comunicacion,";
-
-  public static final String INTERRUPTED_MSG = "El comando ha sido abortado,";
-
-  public static final String NO_FINGERPRINT_MSG = "Falla de identificación,";
-
   public static final String UNKNOWN_MSG = "Error en la captura.";
-
-  public static final String PNG = "PNG";
 
   // Constantes Jsons class.
 
@@ -197,7 +141,5 @@ public class Constants {
   // AcquisitionHandler class
 
   public static final String FLAT_RIGHT_INDEX = "FLAT_RIGHT_INDEX";
-
-  public static final String FLAT_LEFT_INDEX = "FLAT_LEFT_INDEX";
 
 }
