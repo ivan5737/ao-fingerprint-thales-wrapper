@@ -159,7 +159,7 @@ descripción de IDEMIA.
 
 
 ## ⚙️ Flujo General
-```mermaid
+```text
 ApplicationThales.main()
 │
 ▼
@@ -189,7 +189,7 @@ AcquisitionService.startAcquisition(timeout)
 ```
 ---
 ## 🔍 Diagrama Lógico Simplificado
-```mermaid
+```text
 +---------------------------------------------------+
 |                ApplicationThales                  |
 |---------------------------------------------------|
