@@ -157,6 +157,69 @@ descripción de IDEMIA.
 
 ---
 
+
+## ⚙️ Flujo General
+```mermaid
+ApplicationThales.main()
+│
+▼
+AcquisitionService.startAcquisition(timeout)
+│
+├── [1] AcquisitionInitializer.initialize()
+│ ├── Carga librería GBMSAPI
+│ ├── Escanea dispositivo
+│ ├── Configura primer escáner disponible
+│ └── Deja SDK listo para capturar
+│
+└── [2] AcquisitionHandler.captureFingerprint(timeout)
+├── Configura opciones de adquisición
+├── Llama a GBMSAPI_StartAcquisition(...)
+│
+├── [3] SDK llama invoke() (callback)
+│ ├── Evento: SCANNER_STARTED
+│ ├── Evento: FRAME_ACQUIRED → genera bytes imagen
+│ ├── Evento: PREVIEW_PHASE_END
+│ ├── Evento: ACQUISITION_END → genera ResponseOk
+│ └── Evento: ACQUISITION_ERROR → lanza excepción
+│
+├── Monitoreo con TimerTask + timeout
+├── Procesamiento de diagnósticos (LEDs / Fake Finger)
+└── Retorna ResponseOk(fingerprintBase64)
+
+```
+---
+## 🔍 Diagrama Lógico Simplificado
+```mermaid
++---------------------------------------------------+
+|                ApplicationThales                  |
+|---------------------------------------------------|
+|  - Ejecuta servicio y muestra resultado            |
++--------------------------┬------------------------+
+                           │
+                           ▼
++---------------------------------------------------+
+|              AcquisitionService                   |
+|---------------------------------------------------|
+|  + startAcquisition(Long timeout): ResponseOk     |
+|     ├─ initializer.initialize()                   |
+|     └─ handler.captureFingerprint(timeout)        |
++--------------------------┬------------------------+
+                           │
+            +--------------┼------------------+
+            │                                   │
+            ▼                                   ▼
++----------------------------+     +-----------------------------+
+|   AcquisitionInitializer   |     |     AcquisitionHandler      |
+|----------------------------|     |-----------------------------|
+|  - initialize()            |     |  - captureFingerprint()     |
+|  - refreshDeviceList()     |     |  - invoke() (callbacks)     |
+|  - setupScanner()          |     |  - handleFrameAcquired()    |
+|                            |     |  - handleAcquisitionEnd()   |
+|  (Carga y configura SDK)   |     |  (Ejecuta adquisición real) |
++----------------------------+     +-----------------------------+
+```
+---
+
 ## 🧠 Nota final
 
 Asegúrate de que las DLLs estén disponibles ya sea:
