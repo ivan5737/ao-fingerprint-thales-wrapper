@@ -2,7 +2,7 @@
 
 Proyecto Maven para capturar una huella con **GBMSAPI Thales**, que incluye:
 
-- Captura de tipo `FLAT_SINGLE_FINGER`
+- Captura de tipo `FLAT_RIGHT_INDEX`
 - Escucha de eventos para obtener la imagen final
 - Generación de **Base64** directamente desde el lector de huellas
 
